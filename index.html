@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiMitra</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex flex-col items-center min-h-screen">
+
+    <!-- Header -->
+    <header class="w-full bg-white shadow-md p-4 flex justify-between items-center rounded-b-2xl sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-green-700">KrishiMitra</h1>
+        <nav class="flex space-x-4">
+            <button id="home-btn" class="bg-green-600 text-white font-medium py-2 px-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">Home</button>
+            <button id="chatbot-btn" class="bg-green-600 text-white font-medium py-2 px-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">Chatbot</button>
+            <button id="login-btn" class="bg-green-600 text-white font-medium py-2 px-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">Login/Sign Up</button>
+            <a href="https://www.google.com/search?q=weather" target="_blank" class="bg-green-600 text-white font-medium py-2 px-4 rounded-full shadow-lg hover:bg-green-700 transition-colors flex items-center justify-center">Weather</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="w-full max-w-4xl p-8 flex-grow">
+        <!-- Content will be inserted here by JavaScript -->
+    </main>
+
+    <!-- Message Box -->
+    <div id="message-box" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 p-4 rounded-lg text-white shadow-lg transition-opacity duration-300 hidden z-50"></div>
+
+    <!-- Login/Sign Up Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center p-4 hidden z-50">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm text-center">
+            <h2 class="text-2xl font-bold mb-4 text-green-700">Login / Sign Up</h2>
+            <div class="space-y-4">
+                <input id="username-input" type="text" placeholder="Username" class="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-400">
+                <input id="password-input" type="password" placeholder="Password" class="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-400">
+            </div>
+            <div class="mt-6 space-y-4">
+                <button id="signup-btn" class="w-full bg-green-600 text-white font-medium py-3 px-6 rounded-full shadow-lg hover:bg-green-700 transition-colors">
+                    Sign Up
+                </button>
+                <button id="login-auth-btn" class="w-full bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-full shadow-lg hover:bg-gray-300 transition-colors">
+                    Login
+                </button>
+            </div>
+            <button id="close-auth-btn" class="mt-4 text-gray-400 hover:text-gray-600 transition-colors block mx-auto">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Modal -->
+    <div id="chatbot-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center p-4 hidden z-50">
+        <div class="flex flex-col w-full max-w-xl h-[90vh] bg-white rounded-2xl shadow-2xl">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-100 rounded-t-2xl">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-800">Smart Crop Advisory Bot</h2>
+                <button id="close-chatbot-btn" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Chat History -->
+            <div id="chat-history" class="flex-1 p-6 overflow-y-auto">
+                <div class="flex mb-4 items-end justify-start">
+                    <div class="bg-gray-200 text-gray-800 p-3 rounded-xl rounded-bl-none shadow-md max-w-xs md:max-w-md">
+                        <p>Hello there! I'm a chatbot designed to help you with the 'Smart Crop Advisory System' problem statement. You can ask me about the problem, features, or technology used.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-gray-200 bg-gray-100 rounded-b-2xl">
+                <div class="flex items-center">
+                    <input id="chat-input" type="text" placeholder="Type your question..." class="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400">
+                    <button id="voice-input-btn" class="ml-2 bg-gray-300 text-gray-700 rounded-full p-2 hover:bg-gray-400 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2h-2v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z"/>
+                        </svg>
+                    </button>
+                    <button id="send-btn" class="ml-2 bg-green-500 text-white rounded-full p-2 hover:bg-green-600 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

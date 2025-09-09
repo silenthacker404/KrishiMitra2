@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.section-gradient {
+    background-image: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+}
+.overlay {
+    background-color: rgba(255, 255, 255, 0.7);
+}
